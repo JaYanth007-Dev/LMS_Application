@@ -5,12 +5,17 @@ const {
   login,
   logout,
   getProfile,
+  forgotPassword,
+  resetPassword,
 } = require("./../controller/user.Controller");
 const { isLoggedIn } = require("../middlewares/auth.middleware");
+const upload = require("../middlewares/multer.middleware");
 
-router.post("/register", register);
+router.post("/register", upload.single("avatar"), register);
 router.post("/login", login);
 router.get("/logout", logout);
-router.get("/me", isLoggedIn,getProfile);
+router.get("/me", isLoggedIn, getProfile);
+router.post("/reset", forgotPassword);
+router.post("/reset/:resetToken", resetPassword);
 
 module.exports = router;

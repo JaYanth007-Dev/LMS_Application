@@ -15,20 +15,18 @@ app.use(
   })
 );
 
-app.use(morgan('dev'))
+app.use(morgan("dev"));
 app.use(cookieParser());
 
 app.use("/ping", (req, res) => {
   res.send("pong");
 });
 
+app.use("/api/v1/user", userRoutes);
 
-app.use("/api/v1/user",userRoutes)
-
-app.all("*", (req,res) => {
+app.all("*", (req, res) => {
   res.status(404).send("OOPS! 404 Not Found");
 });
-
 
 app.use(errorMiddleware);
 module.exports = app;
