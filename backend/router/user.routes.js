@@ -18,4 +18,5 @@ router.get("/me", isLoggedIn, getProfile);
 router.post("/reset", forgotPassword);
 router.post("/reset/:resetToken", resetPassword);
 
+
 module.exports = router;

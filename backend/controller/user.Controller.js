@@ -2,6 +2,7 @@ const User = require("../models/user.model");
 const AppError = require("../utils/appError");
 const cloudinary = require("cloudinary");
 const fs = require("fs/promises");
+const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
 
 const cookieOptions = {
@@ -153,7 +154,39 @@ const forgotPassword = async (req, res, next) => {
     return next(new AppError(e.message, 500));
   }
 };
-const resetPassword = (req, res, next) => {};
+const resetPassword = async (req, res, next) => {
+
+  const { resetToken } = req.params;
+  const { password } = req.body;
+
+  const forgotPasswordToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+  
+  const user = await User.findOne({
+    forgotPasswordToken,
+    forgotPasswordExpiry: { $gt: Date.now() }
+  });
+
+  if (!user) {
+    return next(new AppError("Invalid Token,Please try again ", 400));
+    }
+
+  user.password = password;
+  user.forgotPasswordExpiry = undefined
+  user.forgotPasswordToken = undefined
+
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+    message: "Password changed successfully",
+  })
+
+
+
+};
 
 module.exports = {
   register,
