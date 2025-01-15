@@ -55,11 +55,20 @@ userSchema.pre("save", async function (next) {
 
 userSchema.methods = {
   comparePassword: async function (plainTextPassword) {
-    return await bcrypt.compare(plainTextPassword, this.password);
+    try {
+      console.log("Plaintext password:", plainTextPassword);
+      console.log("Stored Hashed Password:", this.password);
+
+      const match = await bcrypt.compare(plainTextPassword, this.password);
+      return match;
+    } catch (err) {
+      console.error("Error comparing passwords:", err);
+      throw err;
+    }
   },
 
-  generateJWTToken: function () {
-    return jwt.sign(
+  generateJWTToken: async function () {
+    return await jwt.sign(
       {
         _id: this._id,
         role: this.role,
@@ -81,9 +90,9 @@ userSchema.methods = {
       .update(resetToken)
       .digest("hex");
 
-      this.forgotPasswordExpiry = Date.now() + 15 * 60 * 1000; //15 min for expiry
-      
-      return resetToken;
+    this.forgotPasswordExpiry = Date.now() + 15 * 60 * 1000; //15 min for expiry
+
+    return resetToken;
   },
 };
 
