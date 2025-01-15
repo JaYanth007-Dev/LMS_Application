@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const AppError = require("../utils/appError");
 
 const isLoggedIn = function (req, res, next) {
   const { token } = req.cookies;
@@ -15,6 +16,21 @@ const isLoggedIn = function (req, res, next) {
   next();
 };
 
+
+const authorizedRoles = (...roles) => (req, res, next) => {
+    const role = res?.user?.role;
+ 
+    console.log("ROLE",role.toUpperCase());
+    if (!roles.includes(res.user.role.toUpperCase())){
+      return next(
+        new AppError("You do not have permission to access this route", 403)
+      );
+    }
+ 
+    next();
+
+}
 module.exports = {
-  isLoggedIn,
+    isLoggedIn,
+    authorizedRoles
 };
