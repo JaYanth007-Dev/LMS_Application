@@ -10,6 +10,7 @@ const {
 const {
   isLoggedIn,
   authorizedRoles,
+  authorizedSubscriber,
 } = require("../middlewares/auth.middleware");
 const upload = require("../middlewares/multer.middleware");
 
@@ -26,7 +27,7 @@ router
   );
 router
   .route("/:id")
-  .get(isLoggedIn, authorizedRoles('ADMIN'), getLecturesByCourseId)
+  .get(isLoggedIn, authorizedSubscriber, getLecturesByCourseId)
   .put(isLoggedIn, authorizedRoles('ADMIN'), updateCourse)
     .delete(isLoggedIn, authorizedRoles('ADMIN'), deleteCourse)
   .post(isLoggedIn, authorizedRoles('ADMIN'),upload.single('lecture'),addLectureToCourseById)
