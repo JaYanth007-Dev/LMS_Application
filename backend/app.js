@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
+const paymentRoutes = require("./router/payment.router.js");
 const userRoutes = require("./router/user.routes");
 const courseRoutes = require("./router/course.routes");
 const errorMiddleware = require("./middlewares/error.middleware");
@@ -25,6 +26,7 @@ app.use("/ping", (req, res) => {
 
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/courses", courseRoutes);
+app.use("/api/v1/payments", paymentRoutes);
 
 app.all("*", (req, res) => {
   res.status(404).send("OOPS! 404 Not Found");
