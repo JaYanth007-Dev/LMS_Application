@@ -48,3 +48,8 @@ How to setup the tailwind css (https://tailwindcss.com/docs/guides/vite)
     @tailwind utilities;
 
 5. Run the server tailwind will be available
+
+
+
+Adding Plugins and Dependencies
+---npm i @reduxjs/toolkit react-redux react-router-dom react-icons react-chartjs-2 chart.js daisyui axios react-hot-toast @tailwindcss/line-clamp
