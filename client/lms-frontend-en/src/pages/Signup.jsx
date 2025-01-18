@@ -71,10 +71,6 @@ function Signup() {
         formData.append("email", signupDetails.email);
         formData.append("password", signupDetails.password);
         formData.append("avatar", signupDetails.avatar);
-
-        console.log(
-            "Form Data:",formData
-        )
         const response = await dispatch(createAccount(formData));
         
         if(response?.payload?.data) {
