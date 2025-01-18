@@ -25,6 +25,7 @@ export default [
       "simple-import-sort": simpleImportSort,
     },
     rules: {
+      "react/prop-types":"off",
       ...js.configs.recommended.rules,
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "warn",
