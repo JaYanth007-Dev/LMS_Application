@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
+require("dotenv").config();
 const paymentRoutes = require("./router/payment.router.js");
 const userRoutes = require("./router/user.routes");
 const courseRoutes = require("./router/course.routes");
