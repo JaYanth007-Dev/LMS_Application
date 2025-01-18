@@ -1,8 +1,11 @@
-import { useState } from 'react'
 import './App.css'
 
+import { useEffect } from 'react'
+
+
+
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect
 
   return (
     <h1 className="text-3xl font-bold underline">
@@ -12,3 +15,4 @@ function App() {
 }
 
 export default App
+ 
