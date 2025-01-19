@@ -20,6 +20,6 @@ router.get("/me", isLoggedIn, getProfile);
 router.post("/reset", forgotPassword);
 router.post("/reset/:resetToken", resetPassword);
 router.post("/changePassword", isLoggedIn,changePassword);
-router.post("/update", isLoggedIn, upload.single("avatar"), updateUser);
+router.put("/update", isLoggedIn, upload.single("avatar"), updateUser);
 
 module.exports = router;

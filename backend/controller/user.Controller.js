@@ -113,7 +113,7 @@ const logout = (req, res) => {
 };
 
 const getProfile = async (req, res) => {
-  const user = await User.findById(req.user.id);
+  const user = await User.findById(res.user._id);
   res.status(200).json({
     success: true,
     message: "User details",
