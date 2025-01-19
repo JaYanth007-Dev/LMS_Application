@@ -1,4 +1,3 @@
-const Razorpay = require("razorpay");
 const User = require("../models/user.model");
 const AppError = require("../utils/appError");
 const crypto = require("crypto");
@@ -17,7 +16,7 @@ const getRazorpayApiKey = async (req, res, next) => {
 };
 const buySubscription = async (req, res, next) => {
     try {
-         const { _id } = res.user;
+      const { _id } = res.user;
         const user = await User.findById(_id); 
         if (!user) {
             return next(new AppError("Unauthorized,Please Login ", 404));

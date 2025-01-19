@@ -11,10 +11,10 @@ function Denied() {
                 Access Denied
             </div>
             <button
-                onClick={() => navigate(-1)}
+                onClick={() => navigate("/")}
                 className="mt-5"
             >
-                <span className="relative block px-8 py-3 border border-current bg-orange-500 text-white">Go Back</span>
+                <span className="relative block px-8 py-3 border border-current bg-orange-500 text-white">Go Home</span>
             </button>
         </main>
     );
