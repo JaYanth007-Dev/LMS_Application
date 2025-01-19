@@ -8,6 +8,8 @@ import Contact from './pages/Contact'
 import CourseDescription from './pages/course/CourseDescription'
 import CourseList from './pages/course/CourseList'
 import CreateCourse from './pages/course/CreateCourse'
+import AddLecture from './pages/dashboard/AddLecture'
+import DisplayLectures from './pages/dashboard/DisplayLectures'
 import Denied from './pages/Denied'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
@@ -40,9 +42,10 @@ function App() {
         <Route path="/course/displaylectures" element={<DisplayLectures />} />
       </Route>
       <Route path='/courses' element={<CourseList />} />
-      <Route path='/courses/descprition' element={<CourseDescription />} />
+      <Route path='/course/description' element={<CourseDescription/>} />
        <Route element={<RequireAuth allowedRoles={['ADMIN']} />}>
         <Route path='/course/create' element={<CreateCourse />} />
+         <Route path="/course/addlecture" element={<AddLecture />} />
       </Route>
       
       <Route path='/contact' element={<Contact/>} />
