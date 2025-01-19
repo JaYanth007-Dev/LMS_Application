@@ -17,9 +17,8 @@ const getRazorpayApiKey = async (req, res, next) => {
 };
 const buySubscription = async (req, res, next) => {
     try {
-
-        const { id } = req.user;
-        const user = await User.findById(id); 
+         const { _id } = res.user;
+        const user = await User.findById(_id); 
         if (!user) {
             return next(new AppError("Unauthorized,Please Login ", 404));
         }
@@ -27,9 +26,8 @@ const buySubscription = async (req, res, next) => {
         if (user.role === "ADMIN") {
             return next(new AppError("Admin cannot a purchase a subscription", 400));
         }
-     
         const subscription = await razorpay.subscriptions.create({
-            plain_id: process.env.RAZORPAY_PLAIN_ID,
+            plain_id: process.env.RAZORPAY_PLAN_ID,
             customer_notify:1
         })
 
