@@ -52,7 +52,6 @@ function CreateCourse() {
             return;
         }
         const response = await dispatch(createNewCourse(userInput));
-        console.log(response);
         if(response?.payload?.success) {
             setUserInput({
                 title: "",

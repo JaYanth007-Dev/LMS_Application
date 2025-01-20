@@ -34,7 +34,6 @@ function Signin() {
         }
       
         const response = await dispatch(login(signinDetails));
-        console.log("log in sign in res",response?.payload);
         if(response?.payload?.data?.data) {
             navigate("/");
         }

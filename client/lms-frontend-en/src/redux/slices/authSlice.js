@@ -65,7 +65,6 @@ export const updateProfile = createAsyncThunk(
       toast.promise(response, {
         loading: "Wait! updating your account",
         success: (data) => {
-          console.log(updateProfile, data);
           return data?.data?.message;
         },
         error: "Failed to update your account",
@@ -94,7 +93,6 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder
           .addCase(login.fulfilled, (state, action) => {
-            console.log("action", action.payload);
             if (action.payload != undefined) {
               localStorage.setItem(
                 "data",
@@ -114,7 +112,6 @@ const authSlice = createSlice({
             state.data = {};
           })
           .addCase(getUserData.fulfilled, (state, action) => {
-            console.log("getUserData.fulfilled",action.payload)
             if (!action?.payload?.data) return;
             localStorage.setItem("data", JSON.stringify(action?.payload?.data));
             localStorage.setItem("isLoggedIn", true);

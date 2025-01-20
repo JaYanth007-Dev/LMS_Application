@@ -60,8 +60,8 @@ userSchema.pre("save", async function (next) {
 userSchema.methods = {
   comparePassword: async function (plainTextPassword) {
     try {
-      console.log("Plaintext password:", plainTextPassword);
-      console.log("Stored Hashed Password:", this.password);
+      // console.log("Plaintext password:", plainTextPassword);
+      // console.log("Stored Hashed Password:", this.password);
 
       const match = await bcrypt.compare(plainTextPassword, this.password);
       return match;

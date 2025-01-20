@@ -12,7 +12,6 @@ const isLoggedIn = function (req, res, next) {
     return next(new AppError("Unauthenticated,Please login ", 401));
   }
   res.user = tokenDetails;
-  console.log("Token details", tokenDetails);
   next();
 };
 
@@ -20,8 +19,7 @@ const isLoggedIn = function (req, res, next) {
 const authorizedRoles = (...roles) => (req, res, next) => {
     const role = res?.user?.role;
  
-    console.log("ROLE",role.toUpperCase());
-    if (!roles.includes(res.user.role.toUpperCase())){
+    if (!roles.includes(res.user.role)){
       return next(
         new AppError("You do not have permission to access this route", 403)
       );

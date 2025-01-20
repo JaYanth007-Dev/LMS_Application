@@ -61,7 +61,6 @@ function EditProfile() {
         await dispatch(getUserData());
 
         navigate("/user/profile");
-        console.log("data in edit page",data)
     }
 
     return (

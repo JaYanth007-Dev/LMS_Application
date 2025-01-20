@@ -48,7 +48,6 @@ function Signup() {
 
     async function onFormSubmit(e) {
         e.preventDefault();
-        console.log(signupDetails);
         if(!signupDetails.email || !signupDetails.password || !signupDetails.fullName ) {
             toast.error("Please fill all the details");
             return;
