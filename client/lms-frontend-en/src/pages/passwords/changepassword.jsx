@@ -4,8 +4,8 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import Layout from "../../Layout/Layout";
-import { changePassword } from "../../Redux/authSlice";
+import Layout from "../../layouts/HomeLayouts";
+// import { changePassword } from "../../redux/slices/authSlice";
 
 const ChangePassword = () => {
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const ChangePassword = () => {
       return;
     }
 
-    const res = await dispatch(changePassword(userPassword));
+    // const res = await dispatch(changePassword(userPassword));
 
     setUserPassword({
       oldPassword: "",
